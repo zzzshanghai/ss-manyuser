@@ -16,7 +16,8 @@ ADD https://raw.githubusercontent.com/breakwa11/shadowsocks/master/shadowsocks/r
 
 RUN chmod +x /run.sh
 
-EXPOSE 20001-200020
+EXPOSE 20001
+EXPOSE 20002
 
 ENTRYPOINT ["/run.sh"]
 
