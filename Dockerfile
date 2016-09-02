@@ -12,7 +12,7 @@ RUN yum clean all && \
 RUN git clone -b manyuser https://github.com/breakwa11/shadowsocks.git
 #RUN git clone -b manyuser https://github.com/mengskysama/shadowsocks.git
 
-ADD run.sh /run.sh
+ADD https://raw.githubusercontent.com/breakwa11/shadowsocks/master/shadowsocks/run.sh /run.sh
 
 RUN chmod +x /run.sh
 
