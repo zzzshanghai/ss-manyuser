@@ -2,6 +2,8 @@ FROM centos:latest
 
 MAINTAINER zzzshanghai
 
+ENV INSTALL_DIR=/root/shadowsocks
+
 RUN yum clean all && \
     yum makecache && \
     yum update -y && \
@@ -9,16 +11,18 @@ RUN yum clean all && \
     yum install -y m2crypto python-setuptools git curl iptables-devel && \
     easy_install pip && pip install cymysql
     
-RUN git clone -b manyuser https://github.com/breakwa11/shadowsocks.git
+RUN git clone -b manyuser https://github.com/mengskysama/shadowsocks.git $INSTALL_DIR && \
+    cp $INSTALL_DIR/config.json $INSTALL_DIR/user-config.json
+
 #RUN git clone -b manyuser https://github.com/mengskysama/shadowsocks.git
 
-ADD https://raw.githubusercontent.com/breakwa11/shadowsocks/master/shadowsocks/run.sh /run.sh
+ADD run.sh /root/run.sh
 
-RUN chmod +x /run.sh
+RUN chmod +x /root/run.sh
 
 EXPOSE 20001
 EXPOSE 20002
 
 ENTRYPOINT ["/run.sh"]
 
-CMD ["server.py"]
+CMD ["python", "/root/shadowsocks/server.py"]
