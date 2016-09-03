@@ -2,7 +2,7 @@ FROM centos:latest
 
 MAINTAINER zzzshanghai
 
-ENV INSTALL_DIR=/root/shadowsocks
+ENV INSTALL_DIR=/shadowsocks
 
 RUN yum clean all && \
     yum makecache && \
@@ -16,13 +16,13 @@ RUN git clone -b manyuser https://github.com/mengskysama/shadowsocks.git $INSTAL
 
 #RUN git clone -b manyuser https://github.com/mengskysama/shadowsocks.git
 
-ADD run.sh /root/run.sh
+ADD run.sh /run.sh
 
-RUN chmod +x /root/run.sh
+RUN chmod +x run.sh
 
 EXPOSE 20001
 EXPOSE 20002
 
 ENTRYPOINT ["/run.sh"]
 
-CMD ["python", "/root/shadowsocks/server.py"]
+CMD ["python", "server.py"]
