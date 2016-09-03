@@ -18,11 +18,11 @@ RUN git clone -b manyuser https://github.com/mengskysama/shadowsocks.git $INSTAL
 
 ADD run.sh /run.sh
 
-RUN chmod +x run.sh
+RUN chmod +x /run.sh
 
 EXPOSE 20001
 EXPOSE 20002
 
 ENTRYPOINT ["/run.sh"]
 
-CMD ["python", "server.py"]
+CMD ["python", "/shadowsocks/server.py"]
