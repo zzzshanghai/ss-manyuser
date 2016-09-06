@@ -10,14 +10,16 @@ RUN yum clean all && \
     easy_install pip && pip install shadowsocks cymysql
 
 RUN git clone -b manyuser https://github.com/breakwa11/shadowsocks.git
+
+WORKDIR /shadowsocks
     
-COPY /root/shadowsocks/mysql.json /root/shadowsocks/user-mysql.json
+COPY mysql.json user-mysql.json
 
-RUN chmod +x /root/shadowsocks/run.sh /root/shadowsocks/server.py /root/shadowsocks/setup.py /root/shadowsocks/stop.sh
+RUN chmod +x run.sh server.py setup.py stop.sh
 
-RUN python /root/shadowsocks/setup.py install
+RUN python setup.py install
 
 EXPOSE 20001
 EXPOSE 20002
 
-CMD /root/shadowsocks/run.sh
+CMD run.sh
