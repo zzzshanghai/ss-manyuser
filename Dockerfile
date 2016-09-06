@@ -9,8 +9,9 @@ RUN yum clean all && \
     yum install -y m2crypto python-setuptools git curl iptables-devel && \
     easy_install pip && pip install shadowsocks cymysql
 
-RUN git clone -b manyuser https://github.com/breakwa11/shadowsocks.git && \
-    cp /root/shadowsocks/mysql.json /root/shadowsocks/user-mysql.json
+RUN git clone -b manyuser https://github.com/breakwa11/shadowsocks.git
+    
+COPY /root/shadowsocks/mysql.json /root/shadowsocks/user-mysql.json
 
 RUN chmod +x /root/shadowsocks/run.sh /root/shadowsocks/server.py /root/shadowsocks/setup.py /root/shadowsocks/stop.sh
 
