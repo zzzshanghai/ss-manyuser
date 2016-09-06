@@ -12,11 +12,9 @@ RUN yum clean all && \
     easy_install pip && pip install shadowsocks cymysql
 
 RUN git clone -b manyuser https://github.com/breakwa11/shadowsocks.git
-
-WORKDIR /root/shadowsocks
     
 #数据库相关信息请填写正确
-ADD $INSTALL_DIR/mysql.json $INSTALL_DIR/user-mysql.json
+RUN cp mysql.json user-mysql.json
 
 RUN chmod +x $INSTALL_DIR/run.sh $INSTALL_DIR/server.py $INSTALL_DIR/setup.py $INSTALL_DIR/stop.sh
 
