@@ -2,8 +2,6 @@ FROM centos:latest
 
 MAINTAINER zzzshanghai
 
-ENV INSTALL_DIR=/root/shadowsocks
-
 RUN yum clean all && \
     yum makecache && \
     yum update -y && \
@@ -14,13 +12,15 @@ RUN yum clean all && \
 RUN git clone -b manyuser https://github.com/breakwa11/shadowsocks.git
     
 #数据库相关信息请填写正确
-RUN cp mysql.json user-mysql.json
+ADD mysql.json /root/shadowsocks/user-mysql.json
 
-RUN chmod +x $INSTALL_DIR/run.sh $INSTALL_DIR/server.py $INSTALL_DIR/setup.py $INSTALL_DIR/stop.sh
+WORKDIR=/root/shadowsocks
 
-RUN python $INSTALL_DIR/setup.py install
+RUN chmod +x run.sh server.py setup.py stop.sh
+
+RUN python setup.py install
 
 EXPOSE 20001
 EXPOSE 20002
 
-CMD $INSTALL_DIR/run.sh
+CMD run.sh
