@@ -11,10 +11,10 @@ RUN yum clean all && \
 
 RUN git clone -b manyuser https://github.com/breakwa11/shadowsocks.git
     
-#数据库相关信息请填写正确
-ADD mysql.json /root/shadowsocks/user-mysql.json
-
 WORKDIR=/root/shadowsocks
+
+#数据库相关信息请填写正确
+RUN cp /root/shadowsocks/mysql.json /root/shadowsocks/user-mysql.json
 
 RUN chmod +x run.sh server.py setup.py stop.sh
 
