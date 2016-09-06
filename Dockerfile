@@ -2,6 +2,8 @@ FROM centos:latest
 
 MAINTAINER zzzshanghai
 
+ENV INSTALL_DIR=/root/shadowsocks
+
 RUN yum clean all && \
     yum makecache && \
     yum update -y && \
@@ -10,7 +12,7 @@ RUN yum clean all && \
     easy_install pip && pip install shadowsocks cymysql
 
 RUN git clone -b manyuser https://github.com/breakwa11/shadowsocks.git && \
-    cp mysql.json usermysql.json
+    cp $INSTALL_DIR/mysql.json $INSTALL_DIR/usermysql.json
     
 WORKDIR /root/shadowsocks
 
