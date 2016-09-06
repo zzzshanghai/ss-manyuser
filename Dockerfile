@@ -14,7 +14,7 @@ RUN git clone -b manyuser https://github.com/breakwa11/shadowsocks.git
 WORKDIR /root/shadowsocks
 
 #数据库相关信息请填写正确
-RUN cp mysql.json user-mysql.json
+RUN cp mysql.json usermysql.json
 
 RUN chmod +x run.sh server.py setup.py stop.sh
 
