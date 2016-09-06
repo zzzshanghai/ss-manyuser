@@ -14,13 +14,13 @@ RUN git clone -b manyuser https://github.com/breakwa11/shadowsocks.git
 WORKDIR /root/shadowsocks
     
 #数据库相关信息请填写正确
-COPY mysql.json user-mysql.json
+ADD ./mysql.json ./user-mysql.json
 
-RUN chmod +x run.sh server.py setup.py stop.sh
+RUN chmod +x ./run.sh ./server.py ./setup.py ./stop.sh
 
-RUN python setup.py install
+RUN python ./setup.py install
 
 EXPOSE 20001
 EXPOSE 20002
 
-CMD run.sh
+CMD ./run.sh
