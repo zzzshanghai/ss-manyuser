@@ -19,4 +19,4 @@ RUN python setup.py install
 EXPOSE 20001
 EXPOSE 20002
 
-CMD root/run.sh
+CMD /root/run.sh
