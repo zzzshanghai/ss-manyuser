@@ -4,10 +4,10 @@ MAINTAINER zzzshanghai
 
 ENV INSTALL_DIR=/root/shadowsocks
 
-RUN yum clean all && \
+RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-* && \
+    yum clean all && \
     yum makecache && \
     yum update -y && \
-    rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-* && \
     yum install -y m2crypto python-setuptools git curl iptables-devel && \
     easy_install pip && pip install shadowsocks cymysql
 
