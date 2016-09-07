@@ -20,7 +20,6 @@ RUN chmod +x run.sh server.py setup.py stop.sh
 
 RUN python setup.py install
 
-EXPOSE 20001
-EXPOSE 20002
+#EXPOSE 20001
 
 CMD run.sh
